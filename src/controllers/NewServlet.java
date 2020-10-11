@@ -1,7 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -13,28 +13,36 @@ import javax.servlet.http.HttpServletResponse;
 import models.Task;
 import utils.DBUtil;
 
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/new")
+public class NewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public IndexServlet() {
+    public NewServlet() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
+        em.getTransaction().begin();
 
-        List<Task> tasks = em.createNamedQuery("getAllTasks", Task.class)
-                             .getResultList();
+        Task t = new Task();
+        String content = "タスクの内容がここに入る";
+        t.setContent(content);
 
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+        t.setCreated_at(currentTime);
+        t.setUpdated_at(currentTime);
+
+        // DBに保存
+        em.persist(t);
+        em.getTransaction().commit();
+
+        // 自動採番されたIDの表示
+        response.getWriter().append(Integer.valueOf(t.getId()).toString());
         // データの件数表示
         response.getWriter().append(Integer.valueOf(tasks.size()).toString());
 
         em.close();
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 
 }
