@@ -61,7 +61,11 @@ th {
 }
 
 th.id {
-    width: 40px;
+    width: 100px;
+}
+
+th.task {
+    width: 200px;
 }
 
 td {

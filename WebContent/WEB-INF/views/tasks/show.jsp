@@ -7,7 +7,7 @@
         <table>
             <tbody>
                 <tr>
-                    <th>ID</th>
+                    <th class="task">タスク内容</th>
                     <td><c:out value="${task.content}" /></td>
                 </tr>
                 <tr>
@@ -21,5 +21,6 @@
             </tbody>
         </table>
         <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
+        <p><a href="${pageContext.request.contextPath}/edit?id=${task.id}">このタスクを編集する</a></p>
     </c:param>
 </c:import>
