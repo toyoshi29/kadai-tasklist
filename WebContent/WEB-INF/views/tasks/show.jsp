@@ -7,15 +7,15 @@
         <table>
             <tbody>
                 <tr>
-                    <th class="task">タスク内容</th>
+                    <th class="show">タスク内容</th>
                     <td><c:out value="${task.content}" /></td>
                 </tr>
                 <tr>
-                    <th>作成日時</th>
+                    <th class="show">作成日時</th>
                     <td><fmt:formatDate value="${task.created_at}" pattern="yyyy年MM月dd日 HH時mm分ss秒" /></td>
                 </tr>
                 <tr>
-                    <th>更新日時</th>
+                    <th class="show">更新日時</th>
                     <td><fmt:formatDate value="${task.updated_at}" pattern="yyyy年MM月dd日 HH時mm分ss秒" /></td>
                 </tr>
             </tbody>

@@ -64,8 +64,9 @@ th.id {
     width: 100px;
 }
 
-th.task {
-    width: 200px;
+th.show {
+    width: 120px;
+    background-color: #EEEEEE;
 }
 
 td {
